@@ -1,0 +1,109 @@
+---
+// Category Grid Component
+interface Category {
+  icon: string;
+  name: string;
+  count: number;
+  href: string;
+}
+
+const categories: Category[] = [
+  { icon: "💼", name: "Chatbots & Virtual Companions", count: 6447, href: "/free-ai-tools/chatbots-virtual-companions" },
+  { icon: "💼", name: "Office & Productivity", count: 23421, href: "/free-ai-tools/office-productivity" },
+  { icon: "🎨", name: "Image Generation & Editing", count: 10302, href: "/free-ai-tools/image-generation-editing" },
+  { icon: "🎨", name: "Art & Creative Design", count: 5633, href: "/free-ai-tools/art-creative-design" },
+  { icon: "💻", name: "Coding & Development", count: 9226, href: "/free-ai-tools/coding-development" },
+  { icon: "🎬", name: "Video & Animation", count: 6250, href: "/free-ai-tools/video-animation" },
+  { icon: "📚", name: "Education & Translation", count: 8134, href: "/free-ai-tools/education-translation" },
+  { icon: "✍️", name: "Writing & Editing", count: 17239, href: "/free-ai-tools/writing-editing" },
+  { icon: "🎤", name: "Voice Generation & Conversion", count: 5507, href: "/free-ai-tools/voice-generation-conversion" },
+  { icon: "📊", name: "Business Management", count: 4596, href: "/free-ai-tools/business-management" },
+  { icon: "🎵", name: "Music & Audio", count: 1579, href: "/free-ai-tools/music-audio" },
+  { icon: "🔍", name: "AI Detection & Anti-Detection", count: 1801, href: "/free-ai-tools/ai-detection-anti-detection" },
+  { icon: "📱", name: "Marketing & Advertising", count: 10276, href: "/free-ai-tools/marketing-advertising" },
+  { icon: "📈", name: "Research & Data Analysis", count: 3700, href: "/free-ai-tools/research-data-analysis" },
+  { icon: "🌐", name: "Social Media", count: 4192, href: "/free-ai-tools/social-media" },
+  { icon: "🏥", name: "Health & Wellness", count: 1086, href: "/free-ai-tools/health-wellness" },
+  { icon: "🏠", name: "Daily Life", count: 2422, href: "/free-ai-tools/daily-life" },
+  { icon: "⚖️", name: "Legal & Finance", count: 2292, href: "/free-ai-tools/legal-finance" },
+  { icon: "🖼️", name: "Image Analysis", count: 1435, href: "/free-ai-tools/image-analysis" },
+  { icon: "🏗️", name: "Interior & Architectural Design", count: 439, href: "/free-ai-tools/interior-architectural-design" },
+  { icon: "🔬", name: "Business Research", count: 1161, href: "/free-ai-tools/business-research" },
+  { icon: "📦", name: "Other", count: 5881, href: "/free-ai-tools/other-1" }
+];
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Free AI Tools by Category
+      </h2>
+      <p class="text-lg text-gray-600 mb-6">
+        Explore our comprehensive collection of AI tools organized by category
+      </p>
+      <a href="/free-ai-tools" class="btn btn-primary">
+        View More →
+      </a>
+    </div>
+
+    <!-- Category Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {categories.map((category, index) => (
+        <a 
+          href={category.href} 
+          class="card hover:shadow-lg transition-all duration-200 group"
+          style={`animation-delay: ${index * 0.05}s`}
+        >
+          <div class="flex items-start space-x-4">
+            <div class="text-3xl mb-2 group-hover:scale-110 transition-transform duration-200">
+              {category.icon}
+            </div>
+            <div class="flex-1">
+              <h3 class="font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">
+                {category.name}
+              </h3>
+              <p class="text-sm text-gray-600">
+                {category.count.toLocaleString()} tools
+              </p>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Load More Button -->
+    <div class="text-center mt-12">
+      <button class="btn btn-secondary" id="loadMoreCategories">
+        Load More Categories
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Add staggered animation to cards
+  const cards = document.querySelectorAll('.card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fade-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  cards.forEach(card => {
+    observer.observe(card);
+  });
+
+  // Load more functionality
+  const loadMoreBtn = document.getElementById('loadMoreCategories');
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', () => {
+      // In a real implementation, this would load more categories
+      alert('Load more categories - this would fetch additional categories from the API');
+    });
+  }
+</script>

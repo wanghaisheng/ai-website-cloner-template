@@ -1,12 +1,21 @@
 ---
 import '../styles/globals.css';
 import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/Hero.astro';
+import CategoryGrid from '../components/CategoryGrid.astro';
+import FeaturedArticles from '../components/FeaturedArticles.astro';
+import MidjourneyPrompts from '../components/MidjourneyPrompts.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout>
-  <main className="flex min-h-screen items-center justify-center">
-    <p className="text-muted-foreground">
-      Clone target not yet built. Run <code className="font-mono text-foreground">/clone-website</code> to start.
-    </p>
+<Layout title="Best AI Tools Directory & AI Tools List - Toolify" description="Discover the best AI tools and websites. Find, compare, and explore the most comprehensive directory of AI tools and resources.">
+  <Navigation />
+  <main class="pt-16">
+    <Hero />
+    <CategoryGrid />
+    <FeaturedArticles />
+    <MidjourneyPrompts />
   </main>
+  <Footer />
 </Layout>

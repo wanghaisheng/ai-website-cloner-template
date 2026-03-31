@@ -1,23 +1,52 @@
 ---
 export interface Props {
 	title: string;
+	description?: string;
+	image?: string;
+	url?: string;
 }
 
-const { title } = Astro.props;
+const { title, description = "Discover the best AI tools and websites", image = "/og-image.png" } = Astro.props;
+const url = new URL(Astro.url.pathname, Astro.site?.origin || 'http://localhost:3000');
 ---
 
 <!DOCTYPE html>
 <html lang="en" class="h-full antialiased">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Pixel-perfect website clone" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" sizes="32x32" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<meta name="generator" content={Astro.generator} />
+		
 		<title>{title}</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+		<meta name="description" content={description} />
+		
+		<!-- Open Graph -->
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, Astro.site?.origin || 'http://localhost:3000')} />
+		<meta property="og:url" content={url} />
+		<meta property="og:type" content="website" />
+		
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={new URL(image, Astro.site?.origin || 'http://localhost:3000')} />
+		
+		<!-- Preconnect to fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+		
+		<style>
+			/* Font fallback for Inter */
+			body {
+				font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+			}
+		</style>
 	</head>
 	<body class="min-h-full flex flex-col">
 		<slot />

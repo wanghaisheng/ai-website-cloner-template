@@ -1,0 +1,95 @@
+---
+// Hero Section Component
+---
+
+<section class="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
+  <div class="container">
+    <div class="text-center max-w-4xl mx-auto">
+      <!-- Main Heading -->
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 animate-fade-in">
+        Discover The Best AI Websites & Tools
+      </h1>
+      
+      <!-- Subheading -->
+      <p class="text-xl md:text-2xl text-gray-600 mb-8 animate-fade-in" style="animation-delay: 0.1s">
+        Find, compare, and explore the most comprehensive directory of AI tools and resources
+      </p>
+      
+      <!-- Search Bar -->
+      <div class="max-w-2xl mx-auto mb-12 animate-fade-in" style="animation-delay: 0.2s">
+        <div class="relative">
+          <input 
+            type="text" 
+            placeholder="Search for AI tools, categories, or keywords..."
+            class="input text-lg pr-12"
+          />
+          <button class="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 text-blue-600 hover:text-blue-700">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Stats Row -->
+      <div class="flex flex-wrap justify-center gap-8 animate-fade-in" style="animation-delay: 0.3s">
+        <div class="text-center">
+          <div class="text-3xl font-bold text-blue-600 mb-1">
+            <span class="counter" data-target="25000">0</span>+
+          </div>
+          <div class="text-gray-600">AI Tools</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-blue-600 mb-1">
+            <span class="counter" data-target="100">0</span>+
+          </div>
+          <div class="text-gray-600">Categories</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-blue-600 mb-1">
+            <span class="counter" data-target="50000">0</span>+
+          </div>
+          <div class="text-gray-600">Reviews</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Counter animation
+  const counters = document.querySelectorAll('.counter');
+  const speed = 200; // Animation speed in ms
+
+  const animateCounter = (counter: Element) => {
+    const target = parseInt(counter.getAttribute('data-target') || '0');
+    const increment = target / speed;
+    let current = 0;
+
+    const updateCounter = () => {
+      current += increment;
+      if (current < target) {
+        counter.textContent = Math.ceil(current).toLocaleString();
+        requestAnimationFrame(updateCounter);
+      } else {
+        counter.textContent = target.toLocaleString();
+      }
+    };
+
+    updateCounter();
+  };
+
+  // Start animation when element is in viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  counters.forEach(counter => {
+    observer.observe(counter);
+  });
+</script>

@@ -1,0 +1,416 @@
+---
+// Tooltip and Popover Component
+---
+
+<!-- Tooltip Examples -->
+<div class="demo-section">
+  <h3 class="text-xl font-semibold mb-4">Tooltips</h3>
+  
+  <!-- Top Tooltip -->
+  <div class="tooltip-wrapper">
+    <button class="btn btn-secondary" data-tooltip="This is a top tooltip">
+      Top Tooltip
+    </button>
+    <div class="tooltip tooltip-top">
+      This is a top tooltip with helpful information
+    </div>
+  </div>
+
+  <!-- Bottom Tooltip -->
+  <div class="tooltip-wrapper">
+    <button class="btn btn-secondary" data-tooltip="This is a bottom tooltip">
+      Bottom Tooltip
+    </button>
+    <div class="tooltip tooltip-bottom">
+      This is a bottom tooltip with helpful information
+    </div>
+  </div>
+
+  <!-- Left Tooltip -->
+  <div class="tooltip-wrapper">
+    <button class="btn btn-secondary" data-tooltip="This is a left tooltip">
+      Left Tooltip
+    </button>
+    <div class="tooltip tooltip-left">
+      This is a left tooltip with helpful information
+    </div>
+  </div>
+
+  <!-- Right Tooltip -->
+  <div class="tooltip-wrapper">
+    <button class="btn btn-secondary" data-tooltip="This is a right tooltip">
+      Right Tooltip
+    </button>
+    <div class="tooltip tooltip-right">
+      This is a right tooltip with helpful information
+    </div>
+  </div>
+</div>
+
+<!-- Popover Examples -->
+<div class="demo-section">
+  <h3 class="text-xl font-semibold mb-4">Popovers</h3>
+  
+  <!-- Click Popover -->
+  <div class="popover-wrapper">
+    <button class="btn btn-primary" data-popover="click-popover">
+      Click Popover
+    </button>
+    <div class="popover popover-click" id="click-popover">
+      <div class="popover-header">
+        <h4>Popover Title</h4>
+        <button class="popover-close" onclick="closePopover('click-popover')">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="popover-content">
+        <p>This is a popover that appears when you click the button. It can contain rich content like text, images, and even forms.</p>
+        <div class="popover-actions">
+          <button class="btn btn-primary btn-sm">Action</button>
+          <button class="btn btn-secondary btn-sm">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hover Popover -->
+  <div class="popover-wrapper">
+    <button class="btn btn-secondary" data-popover="hover-popover">
+      Hover Popover
+    </button>
+    <div class="popover popover-hover" id="hover-popover">
+      <div class="popover-header">
+        <h4>Hover Popover</h4>
+      </div>
+      <div class="popover-content">
+        <p>This popover appears when you hover over the button. It disappears when you move away.</p>
+        <ul class="popover-list">
+          <li>Feature 1</li>
+          <li>Feature 2</li>
+          <li>Feature 3</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tooltip with Icon -->
+<div class="demo-section">
+  <h3 class="text-xl font-semibold mb-4">Icon Tooltips</h3>
+  
+  <div class="icon-tooltip-wrapper">
+    <div class="icon-tooltip" data-tooltip="Download file">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m-3 3V4a2 2 0 00-2-2V4a2 2 0 00-2-2m0 0V4a2 2 0 00-2-2m0 0V4" />
+      </svg>
+    </div>
+    <div class="tooltip tooltip-top">
+      Download file to your device
+    </div>
+  </div>
+
+  <div class="icon-tooltip-wrapper">
+    <div class="icon-tooltip" data-tooltip="Copy to clipboard">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 0h6M8 6V4a2 2 0 00-2-2V4a2 2 0 00-2-2m0 0V4" />
+      </svg>
+    </div>
+    <div class="tooltip tooltip-top">
+      Copy text to clipboard
+    </div>
+  </div>
+
+  <div class="icon-tooltip-wrapper">
+    <div class="icon-tooltip" data-tooltip="Delete item">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m0 0l-1-1m1 1l4-4m-1-1l-4 4" />
+      </svg>
+    </div>
+    <div class="tooltip tooltip-top">
+      Delete this item permanently
+    </div>
+  </div>
+</div>
+
+<style>
+.demo-section {
+  padding: var(--space-xl);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.demo-section:last-child {
+  border-bottom: none;
+}
+
+/* Tooltip Styles */
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: var(--space-sm);
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 1000;
+  background: var(--color-foreground);
+  color: var(--color-background);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  box-shadow: var(--shadow-lg);
+}
+
+.tooltip::before {
+  content: '';
+  position: absolute;
+  border: 5px solid transparent;
+}
+
+.tooltip-top {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip-top::before {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-top-color: var(--color-foreground);
+}
+
+.tooltip-bottom {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip-bottom::before {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(50%);
+  border-bottom-color: var(--color-foreground);
+}
+
+.tooltip-left {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip-left::before {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  border-left-color: var(--color-foreground);
+}
+
+.tooltip-right {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip-right::before {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(50%);
+  border-right-color: var(--color-foreground);
+}
+
+.tooltip-wrapper:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Icon Tooltip Styles */
+.icon-tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.icon-tooltip {
+  color: var(--color-muted);
+  cursor: help;
+  transition: color 0.2s ease;
+}
+
+.icon-tooltip:hover {
+  color: var(--color-foreground);
+}
+
+/* Popover Styles */
+.popover-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: var(--space-sm);
+}
+
+.popover {
+  position: absolute;
+  z-index: 1000;
+  min-width: 280px;
+  max-width: 400px;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.popover-click {
+  top: calc(100% + 8px);
+  left: 0;
+}
+
+.popover-hover {
+  top: calc(100% + 8px);
+  left: 0;
+}
+
+.popover-wrapper:hover .popover-hover,
+.popover-wrapper:has(.popover-click:target) .popover-click {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.popover-header h4 {
+  font-weight: 600;
+  color: var(--color-foreground);
+  margin: 0;
+}
+
+.popover-close {
+  background: transparent;
+  border: none;
+  color: var(--color-muted);
+  cursor: pointer;
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.popover-close:hover {
+  background: var(--color-surface);
+  color: var(--color-foreground);
+}
+
+.popover-content {
+  padding: var(--space-md);
+}
+
+.popover-content p {
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.popover-list {
+  margin: 0;
+  padding-left: var(--space-lg);
+  color: var(--color-muted);
+}
+
+.popover-list li {
+  margin-bottom: var(--space-xs);
+}
+
+.popover-actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Button size variants */
+.btn-sm {
+  height: 2rem;
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 0.875rem;
+}
+
+/* Focus styles */
+.tooltip-wrapper:focus-within .tooltip,
+.icon-tooltip:focus-within .tooltip,
+.popover-wrapper:focus-within .popover {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+  .popover {
+    min-width: 260px;
+    max-width: calc(100vw - 40px);
+  }
+  
+  .popover-click,
+  .popover-hover {
+    left: 0;
+    right: 0;
+    transform: none;
+  }
+}
+</style>
+
+<script>
+  function closePopover(id: string) {
+    const popover = document.getElementById(id);
+    if (popover) {
+      popover.style.opacity = '0';
+      popover.style.visibility = 'hidden';
+      popover.style.transform = 'scale(0.95)';
+      
+      // Remove focus from trigger button
+      const trigger = document.querySelector(`[data-popover="${id}"]`);
+      if (trigger) {
+        trigger.blur();
+      }
+    }
+  }
+
+  // Close popovers when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.popover-wrapper')) {
+      const openPopovers = document.querySelectorAll('.popover-click:target');
+      openPopovers.forEach(popover => {
+        const id = popover.id;
+        closePopover(id);
+      });
+    }
+  });
+
+  // Handle escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const openPopovers = document.querySelectorAll('.popover-click:target');
+      openPopovers.forEach(popover => {
+        const id = popover.id;
+        closePopover(id);
+      });
+    }
+  });
+</script>

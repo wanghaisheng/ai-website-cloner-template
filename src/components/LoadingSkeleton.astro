@@ -1,0 +1,183 @@
+---
+// Loading Skeleton Component
+---
+
+<div class="skeleton-container">
+  <!-- Card Skeleton -->
+  <div class="skeleton-card">
+    <div class="skeleton-image skeleton"></div>
+    <div class="skeleton-content">
+      <div class="skeleton-title skeleton"></div>
+      <div class="skeleton-text skeleton"></div>
+      <div class="skeleton-text skeleton"></div>
+    </div>
+  </div>
+
+  <!-- List Skeleton -->
+  <div class="skeleton-list">
+    <div class="skeleton-item">
+      <div class="skeleton-avatar skeleton"></div>
+      <div class="skeleton-item-content">
+        <div class="skeleton-item-title skeleton"></div>
+        <div class="skeleton-item-text skeleton"></div>
+      </div>
+    </div>
+    <div class="skeleton-item">
+      <div class="skeleton-avatar skeleton"></div>
+      <div class="skeleton-item-content">
+        <div class="skeleton-item-title skeleton"></div>
+        <div class="skeleton-item-text skeleton"></div>
+      </div>
+    </div>
+    <div class="skeleton-item">
+      <div class="skeleton-avatar skeleton"></div>
+      <div class="skeleton-item-content">
+        <div class="skeleton-item-title skeleton"></div>
+        <div class="skeleton-item-text skeleton"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Skeleton -->
+  <div class="skeleton-table">
+    <div class="skeleton-header">
+      <div class="skeleton-cell skeleton"></div>
+      <div class="skeleton-cell skeleton"></div>
+      <div class="skeleton-cell skeleton"></div>
+      <div class="skeleton-cell skeleton"></div>
+    </div>
+    <div class="skeleton-row">
+      <div class="skeleton-cell skeleton"></div>
+      <div class="skeleton-cell skeleton"></div>
+      <div class="skeleton-cell skeleton"></div>
+      <div class="skeleton-cell skeleton"></div>
+    </div>
+    <div class="skeleton-row">
+      <div class="skeleton-cell skeleton"></div>
+      <div class="skeleton-cell skeleton"></div>
+      <div class="skeleton-cell skeleton"></div>
+      <div class="skeleton-cell skeleton"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-container {
+  padding: var(--space-lg);
+}
+
+.skeleton-card {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+.skeleton-image {
+  height: 200px;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+}
+
+.skeleton-content {
+  space-y: var(--space-sm);
+}
+
+.skeleton-title {
+  height: 24px;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.skeleton-text {
+  height: 16px;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.skeleton-text:last-child {
+  width: 60%;
+}
+
+.skeleton-list {
+  space-y: var(--space-md);
+}
+
+.skeleton-item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-md);
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: var(--space-md);
+}
+
+.skeleton-item-content {
+  flex: 1;
+}
+
+.skeleton-item-title {
+  height: 16px;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-xs);
+  width: 60%;
+}
+
+.skeleton-item-text {
+  height: 14px;
+  border-radius: var(--radius-sm);
+  width: 40%;
+}
+
+.skeleton-table {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.skeleton-header {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.skeleton-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.skeleton-cell {
+  height: 20px;
+  border-radius: var(--radius-sm);
+}
+</style>

@@ -1,0 +1,291 @@
+---
+// Toast Notifications Component
+interface Toast {
+  id: string;
+  type: 'success' | 'error' | 'warning' | 'info';
+  title: string;
+  message?: string;
+  duration?: number;
+  action?: {
+    label: string;
+    handler: () => void;
+  };
+}
+
+const toasts: Toast[] = [
+  {
+    id: '1',
+    type: 'success',
+    title: 'Success!',
+    message: 'Your changes have been saved.',
+    duration: 5000
+  },
+  {
+    id: '2',
+    type: 'error',
+    title: 'Error!',
+    message: 'Something went wrong. Please try again.',
+    duration: 8000,
+    action: {
+      label: 'Retry',
+      handler: () => console.log('Retry action')
+    }
+  },
+  {
+    id: '3',
+    type: 'warning',
+    title: 'Warning!',
+    message: 'Please review your input before proceeding.',
+    duration: 6000
+  },
+  {
+    id: '4',
+    type: 'info',
+    title: 'Info',
+    message: 'New features are available in the settings.',
+    duration: 4000
+  }
+];
+---
+
+<div class="toast-container">
+  {toasts.map((toast) => (
+    <div class={`toast toast-${toast.type}`} data-toast-id={toast.id}>
+      <div class="toast-icon">
+        {toast.type === 'success' && (
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        )}
+        {toast.type === 'error' && (
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        )}
+        {toast.type === 'warning' && (
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        )}
+        {toast.type === 'info' && (
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )}
+      </div>
+      
+      <div class="toast-content">
+        <div class="toast-title">{toast.title}</div>
+        {toast.message && (
+          <div class="toast-message">{toast.message}</div>
+        )}
+      </div>
+      
+      <div class="toast-actions">
+        {toast.action && (
+          <button class="toast-action" onclick={toast.action.handler}>
+            {toast.action.label}
+          </button>
+        )}
+        <button class="toast-close" onclick={() => dismissToast(toast.id)}>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 400px;
+}
+
+.toast {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-md);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  min-height: 80px;
+  animation: slideIn 0.3s ease-out;
+  transition: all 0.2s ease;
+}
+
+.toast:hover {
+  transform: translateX(-4px);
+}
+
+.toast-success {
+  border-left: 4px solid var(--color-success);
+}
+
+.toast-error {
+  border-left: 4px solid var(--color-destructive);
+}
+
+.toast-warning {
+  border-left: 4px solid var(--color-warning);
+}
+
+.toast-info {
+  border-left: 4px solid var(--color-primary);
+}
+
+.toast-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.toast-success .toast-icon {
+  color: var(--color-success);
+}
+
+.toast-error .toast-icon {
+  color: var(--color-destructive);
+}
+
+.toast-warning .toast-icon {
+  color: var(--color-warning);
+}
+
+.toast-info .toast-icon {
+  color: var(--color-primary);
+}
+
+.toast-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.toast-title {
+  font-weight: 600;
+  color: var(--color-foreground);
+  margin-bottom: 2px;
+}
+
+.toast-message {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.toast-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.toast-action {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.toast-action:hover {
+  background: var(--color-primary-hover);
+}
+
+.toast-close {
+  background: transparent;
+  border: none;
+  color: var(--color-muted);
+  cursor: pointer;
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.toast-close:hover {
+  background: var(--color-surface);
+  color: var(--color-foreground);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.toast.removing {
+  animation: slideOut 0.3s ease-in forwards;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .toast-container {
+    left: 20px;
+    right: 20px;
+    max-width: none;
+  }
+  
+  .toast {
+    min-height: 60px;
+  }
+  
+  .toast-title {
+    font-size: 0.875rem;
+  }
+  
+  .toast-message {
+    font-size: 0.75rem;
+  }
+}
+</style>
+
+<script>
+  function dismissToast(id: string) {
+    const toast = document.querySelector(`[data-toast-id="${id}"]`);
+    if (toast) {
+      toast.classList.add('removing');
+      setTimeout(() => {
+        toast.remove();
+      }, 300);
+    }
+  }
+
+  // Auto-dismiss toasts
+  document.addEventListener('DOMContentLoaded', () => {
+    const toasts = document.querySelectorAll('.toast');
+    toasts.forEach((toast) => {
+      const duration = parseInt(toast.getAttribute('data-duration') || '5000');
+      setTimeout(() => {
+        const id = toast.getAttribute('data-toast-id');
+        if (id) dismissToast(id);
+      }, duration);
+    });
+  });
+</script>

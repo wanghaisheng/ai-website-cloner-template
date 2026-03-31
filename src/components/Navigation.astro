@@ -1,0 +1,155 @@
+---
+// Navigation Component for Toolify.ai
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
+  <div class="container">
+    <nav class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="/" class="text-2xl font-bold text-gray-900">
+          Toolify
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        <!-- Free Tools Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+            Free Tools
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="absolute left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="p-4">
+              <a href="/free-ai-tools" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">All Free Tools</a>
+              <a href="/new" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">New AIs</a>
+              <a href="/most-saved" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Most Saved AIs</a>
+              <a href="/most-used" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Most Used AIs</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Products Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+            Products
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="absolute left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="p-4">
+              <a href="/apps" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">AI Apps</a>
+              <a href="/discord" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Discord of AI</a>
+              <a href="/browser-extension" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">AI Chrome Extensions</a>
+              <a href="/gpts" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">GPTs</a>
+              <a href="/ai-model" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">AI Models</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category -->
+        <a href="/category" class="text-gray-600 hover:text-gray-900 transition-colors">
+          Category
+        </a>
+
+        <!-- Ranking Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+            Ranking
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="absolute left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="p-4">
+              <a href="/Best-trending-AI-Tools" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Top AI By Monthly</a>
+              <a href="/Best-AI-Tools-Category" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Top AI By Categories</a>
+              <a href="/Best-AI-Tools-region" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Top AI By Regions</a>
+              <a href="/Best-AI-Tools-Source" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Top AI By Source</a>
+              <a href="/Best-AI-Tools-revenue" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Top AI by Revenue</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prompts Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+            Prompts
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="absolute left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="p-4">
+              <a href="/n8n" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">n8n Workflows</a>
+              <a href="/midjourney-library" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Midjourney Prompts</a>
+              <a href="/openclaw-skills" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Openclaw Skills</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jobs -->
+        <a href="/jobs" class="text-gray-600 hover:text-gray-900 transition-colors">
+          Jobs
+        </a>
+
+        <!-- Research Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+            Research
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="absolute left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="p-4">
+              <a href="/profile/insights" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Website Insights</a>
+              <a href="/social-listening" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Social Listening</a>
+              <a href="/research-report" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Research Report</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Dropdown -->
+        <div class="relative group">
+          <button class="flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+            Submit
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="absolute left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="p-4">
+              <a href="/submit" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Submit AI</a>
+              <a href="/advertise" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Advertise</a>
+              <a href="/post-or-insert" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Guest Posts / Link Insert</a>
+              <a href="/update-ai" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Update AI</a>
+              <a href="/submit-gpt" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">Submit GPT</a>
+              <a href="/business" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded">More Business</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Button -->
+      <div class="hidden md:block">
+        <a href="/submit" class="btn btn-primary">
+          Submit AI
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button class="p-2 text-gray-600 hover:text-gray-900">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
