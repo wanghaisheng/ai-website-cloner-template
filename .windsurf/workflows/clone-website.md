@@ -25,7 +25,7 @@ If the user provides additional instructions (specific fidelity level, customiza
 
 1. **Browser automation is required.** Check for available browser MCP tools (Chrome MCP, Playwright MCP, Browserbase MCP, Puppeteer MCP, etc.). Use whichever is available — if multiple exist, prefer Chrome MCP. If none are detected, ask the user which browser tool they have and how to connect it. This skill cannot work without browser automation.
 2. Parse `the target URL provided by the user` as one or more URLs. Normalize and validate each URL; if any are invalid, ask the user to correct them before proceeding. For each valid URL, verify it is accessible via your browser MCP tool.
-3. Verify the base project builds: `npm run build`. The Next.js + shadcn/ui + Tailwind v4 scaffold should already be in place. If not, tell the user to set it up first.
+3. Verify the base project builds: `npm run build`. The Astro + shadcn/ui + Tailwind v4 scaffold should already be in place. If not, tell the user to set it up first.
 4. Create the output directories if they don't exist: `docs/research/`, `docs/research/components/`, `docs/design-references/`, `scripts/`. For multiple clones, also prepare per-site folders like `docs/research/<hostname>/` and `docs/design-references/<hostname>/`.
 5. When working with multiple sites in one command, optionally confirm whether to run them in parallel (recommended, if resources allow) or sequentially to avoid overload.
 
@@ -126,11 +126,11 @@ Navigate to the target URL with browser MCP.
 ### Global Extraction
 Extract these from the page before doing anything else:
 
-**Fonts** — Inspect `<link>` tags for Google Fonts or self-hosted fonts. Check computed `font-family` on key elements (headings, body, code, labels). Document every family, weight, and style actually used. Configure them in `src/app/layout.tsx` using `next/font/google` or `next/font/local`.
+**Fonts** — Inspect `<link>` tags for Google Fonts or self-hosted fonts. Check computed `font-family` on key elements (headings, body, code, labels). Document every family, weight, and style actually used. Configure them in `src/layouts/Layout.astro` using Google Fonts CDN or local font files.
 
-**Colors** — Extract the site's color palette from computed styles across the page. Update `src/app/globals.css` with the target's actual colors in the `:root` and `.dark` CSS variable blocks. Map them to shadcn's token names (background, foreground, primary, muted, etc.) where they fit. Add custom properties for colors that don't map to shadcn tokens.
+**Colors** — Extract the site's color palette from computed styles across the page. Update `src/styles/globals.css` with the target's actual colors in the `:root` and `.dark` CSS variable blocks. Map them to shadcn's token names (background, foreground, primary, muted, etc.) where they fit. Add custom properties for colors that don't map to shadcn tokens.
 
-**Favicons & Meta** — Download favicons, apple-touch-icons, OG images, webmanifest to `public/seo/`. Update `layout.tsx` metadata.
+**Favicons & Meta** — Download favicons, apple-touch-icons, OG images, webmanifest to `public/seo/`. Update `Layout.astro` metadata.
 
 **Global UI patterns** — Identify any site-wide CSS or JS: custom scrollbar hiding, scroll-snap on the page container, global keyframe animations, backdrop filters, gradients used as overlays, **smooth scroll libraries** (Lenis, Locomotive Scroll — check for `.lenis`, `.locomotive-scroll`, or custom scroll container classes). Add these to `globals.css` and note any libraries that need to be installed.
 
@@ -176,7 +176,7 @@ Save this as `docs/research/PAGE_TOPOLOGY.md` — it becomes your assembly bluep
 
 This is sequential. Do it yourself (not delegated to an agent) since it touches many files:
 
-1. **Update fonts** in `layout.tsx` to match the target site's actual fonts
+1. **Update fonts** in `Layout.astro` to match the target site's actual fonts
 2. **Update globals.css** with the target's color tokens, spacing values, keyframe animations, utility classes, and any **global scroll behaviors** (Lenis, smooth scroll CSS, scroll-snap on body)
 3. **Create TypeScript interfaces** in `src/types/` for the content structures you've observed
 4. **Extract SVG icons** — find all inline `<svg>` elements on the page, deduplicate them, and save as named React components in `src/components/icons.tsx`. Name them by visual function (e.g., `SearchIcon`, `ArrowRightIcon`, `LogoIcon`).
@@ -308,7 +308,7 @@ For each section (or sub-component, if you're breaking it up), create a spec fil
 # <ComponentName> Specification
 
 ## Overview
-- **Target file:** `src/components/<ComponentName>.tsx`
+- **Target file:** `src/components/<ComponentName>.astro` or `src/components/<ComponentName>.tsx` (for interactive components)
 - **Screenshot:** `docs/design-references/<screenshot-name>.png`
 - **Interaction model:** <static | click-driven | scroll-driven | time-driven>
 
@@ -383,7 +383,7 @@ Based on complexity, dispatch builder agent(s) in worktree(s):
 - The full contents of its component spec file (inline in the prompt — don't say "go read the spec file")
 - Path to the section screenshot in `docs/design-references/`
 - Which shared components to import (`icons.tsx`, `cn()`, shadcn primitives)
-- The target file path (e.g., `src/components/HeroSection.tsx`)
+- The target file path (e.g., `src/components/HeroSection.astro` or `src/components/HeroSection.tsx` for interactive)
 - Instruction to verify with `npx tsc --noEmit` before finishing
 - For responsive behavior: the specific breakpoint values and what changes
 
@@ -401,7 +401,7 @@ The extract → spec → dispatch → merge cycle continues until all sections a
 
 ## Phase 4: Page Assembly
 
-After all sections are built and merged, wire everything together in `src/app/page.tsx`:
+After all sections are built and merged, wire everything together in `src/pages/index.astro`:
 
 - Import all section components
 - Implement the page-level layout from your topology doc (scroll containers, column structures, sticky positioning, z-index layering)

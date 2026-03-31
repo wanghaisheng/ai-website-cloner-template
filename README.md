@@ -2,7 +2,7 @@
 
 <a href="https://github.com/JCodesMore/ai-website-cloner-template/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License" /></a> <a href="https://github.com/JCodesMore/ai-website-cloner-template/stargazers"><img src="https://img.shields.io/github/stars/JCodesMore/ai-website-cloner-template?style=flat" alt="Stars" /></a> <a href="https://discord.gg/hrTSX5yTpB"><img src="https://img.shields.io/discord/1400896964597383279?label=discord" alt="Discord" /></a>
 
-A reusable template for reverse-engineering any website into a clean, modern Next.js codebase using AI coding agents. 
+A reusable template for reverse-engineering any website into a clean, modern Astro codebase using AI coding agents. 
 
 **Recommended: [Claude Code](https://docs.anthropic.com/en/docs/claude-code) with Opus 4.6 for best results** — but works with a variety of AI coding agents.
 
@@ -62,10 +62,11 @@ Point it at a URL, run `/clone-website`, and your AI agent will inspect the site
 
 ## Tech Stack
 
-- **Next.js 16** — App Router, React 19, TypeScript strict
+- **Astro 5** — Islands Architecture, Static Site Generation, TypeScript strict
 - **shadcn/ui** — Radix primitives + Tailwind CSS v4
 - **Tailwind CSS v4** — oklch design tokens
 - **Lucide React** — default icons (replaced by extracted SVGs during cloning)
+- **React 19** — For interactive components (islands)
 
 ## How It Works
 
@@ -81,7 +82,7 @@ Each builder agent receives the full component specification inline — exact `g
 
 ## Use Cases
 
-- **Platform migration** — rebuild a site you own from WordPress/Webflow/Squarespace into a modern Next.js codebase
+- **Platform migration** — rebuild a site you own from WordPress/Webflow/Squarespace into a modern Astro codebase
 - **Lost source code** — your site is live but the repo is gone, the developer left, or the stack is legacy. Get the code back in a modern format
 - **Learning** — deconstruct how production sites achieve specific layouts, animations, and responsive behavior by working with real code
 
@@ -95,10 +96,12 @@ Each builder agent receives the full component specification inline — exact `g
 
 ```
 src/
-  app/              # Next.js routes
-  components/       # React components
+  pages/            # Astro pages
+  components/       # React components (islands)
     ui/             # shadcn/ui primitives
     icons.tsx       # Extracted SVG icons
+  layouts/          # Astro layouts
+  styles/           # Global styles
   lib/utils.ts      # cn() utility
   types/            # TypeScript interfaces
   hooks/            # Custom React hooks
@@ -120,11 +123,12 @@ GEMINI.md           # Gemini CLI config (imports AGENTS.md)
 ## Commands
 
 ```bash
-npm run dev    # Start dev server
-npm run build  # Production build
-npm run lint   # ESLint check
+npm run dev      # Start dev server
+npm run build    # Production build
+npm run preview  # Preview production build
+npm run lint     # ESLint check
 npm run typecheck # TypeScript check
-npm run check  # Run lint + typecheck + build
+npm run check    # Run lint + typecheck + build
 ```
 
 ### If using docker

@@ -5,27 +5,29 @@
 description: Project conventions for AI Website Clone Template
 alwaysApply: true
 ---
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+<!-- BEGIN:astro-agent-rules -->
+# This is NOT the Astro you know
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+This version uses Islands Architecture — static content by default, React components for interactivity. Read the Astro docs before writing code. Note the file structure differences from Next.js.
+<!-- END:astro-agent-rules -->
 
 # Website Reverse-Engineer Template
 
 ## What This Is
-A reusable template for reverse-engineering any website into a clean, modern Next.js codebase using AI coding agents. The Next.js + shadcn/ui + Tailwind v4 base is pre-scaffolded — just run `/clone-website <url1> [<url2> ...]`.
+A reusable template for reverse-engineering any website into a clean, modern Astro codebase using AI coding agents. The Astro + shadcn/ui + Tailwind v4 base is pre-scaffolded — just run `/clone-website <url1> [<url2> ...]`.
 
 ## Tech Stack
-- **Framework:** Next.js 16 (App Router, React 19, TypeScript strict)
+- **Framework:** Astro 5 (Islands Architecture, Static Site Generation, TypeScript strict)
 - **UI:** shadcn/ui (Radix primitives, Tailwind CSS v4, `cn()` utility)
 - **Icons:** Lucide React (default — will be replaced/supplemented by extracted SVGs)
 - **Styling:** Tailwind CSS v4 with oklch design tokens
-- **Deployment:** Vercel
+- **Interactive:** React 19 (for islands)
+- **Deployment:** Any static host (Vercel, Netlify, etc.)
 
 ## Commands
 - `npm run dev` — Start dev server
 - `npm run build` — Production build
+- `npm run preview` — Preview production build
 - `npm run lint` — ESLint check
 - `npm run typecheck` — TypeScript check
 - `npm run check` — Run lint + typecheck + build
@@ -46,10 +48,12 @@ A reusable template for reverse-engineering any website into a clean, modern Nex
 ## Project Structure
 ```
 src/
-  app/              # Next.js routes
-  components/       # React components
+  pages/            # Astro pages
+  components/       # React components (islands)
     ui/             # shadcn/ui primitives
     icons.tsx       # Extracted SVG icons as React components
+  layouts/          # Astro layouts
+  styles/           # Global styles
   lib/
     utils.ts        # cn() utility (shadcn)
   types/            # TypeScript interfaces
