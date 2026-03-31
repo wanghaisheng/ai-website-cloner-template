@@ -23,7 +23,7 @@ Point it at a URL, run `/clone-website`, and your AI agent will inspect the site
    ```
 2. **Install dependencies**
    ```bash
-   npm install
+   pnpm install
    ```
 3. **Start your AI agent** — Claude Code recommended:
    ```bash
@@ -62,11 +62,11 @@ Point it at a URL, run `/clone-website`, and your AI agent will inspect the site
 
 ## Tech Stack
 
-- **Astro 5** — Islands Architecture, Static Site Generation, TypeScript strict
+- **Astro 6** — Islands Architecture, Static Site Generation, TypeScript strict
 - **shadcn/ui** — Radix primitives + Tailwind CSS v4
 - **Tailwind CSS v4** — oklch design tokens
 - **Lucide React** — default icons (replaced by extracted SVGs during cloning)
-- **React 19** — For interactive components (islands)
+- **React 18** — For interactive components (islands)
 
 ## How It Works
 
@@ -123,12 +123,12 @@ GEMINI.md           # Gemini CLI config (imports AGENTS.md)
 ## Commands
 
 ```bash
-npm run dev      # Start dev server
-npm run build    # Production build
-npm run preview  # Preview production build
-npm run lint     # ESLint check
-npm run typecheck # TypeScript check
-npm run check    # Run lint + typecheck + build
+pnpm run dev      # Start dev server
+pnpm run build    # Production build
+pnpm run preview  # Preview production build
+pnpm run lint     # ESLint check
+pnpm run typecheck # TypeScript check
+pnpm run check    # Run lint + typecheck + build
 ```
 
 ### If using docker
